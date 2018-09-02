@@ -33,6 +33,10 @@
 #include <engine/settings_manager.h>
 #include <log/log.h>
 
+#include <cstring>
+#include <unistd.h>
+
+
 namespace Tools
 {
   CTarArchive::CTarArchive():

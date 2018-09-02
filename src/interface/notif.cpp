@@ -1,7 +1,7 @@
 /**
  * This file is part of scleaner project.
 
- * Copyright (C) 2008 FROUIN Jean-Michel
+ * Copyright (C) 2008, 2018 FROUIN Jean-Michel
 
  * Visit scleaner website : http://www.scleaner.org
  * This program is free software; you can redistribute it and/or modify
@@ -38,7 +38,7 @@ namespace Interface
   {
     NotifyNotification* Notif;
     notify_init("fun");
-    Notif = notify_notification_new(fTitle.c_str(), fContent.c_str(), 0, 0);
+    Notif = notify_notification_new(fTitle.c_str(), fContent.c_str(), 0); //, 0);
     notify_notification_set_timeout(Notif, fDelay); //2s
     if (!notify_notification_show (Notif, 0))
       std::cerr << "[ERR] Failed to send notification\n";

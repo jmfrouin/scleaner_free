@@ -1,7 +1,7 @@
 #
 # This file is part of scleaner project.
 #
-# Copyright (C) 2007 FROUIN Jean-Michel
+# Copyright (C) 2007,2018 FROUIN Jean-Michel
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,6 +20,9 @@
 # 04/09/07 : Adding a cscope rule
 # 17/05/08 : Adding profiling code
 # 28/05/08 : Adding FindAPT.cmake
+# 02/09/18 : Fix glib and pixbuf headers
+
+CMAKE_MINIMUM_REQUIRED(VERSION 3.12)
 
 PROJECT(scleaner)
 
@@ -43,7 +46,7 @@ IF(PROFILE)
         SET(SCLEANER_LDFLAGS "-pg ${SCLEANER_LDFLAGS}")
 ENDIF(PROFILE)
 
-ADD_DEFINITIONS(-Wall -MD -fPIC -pg -g -DLEAK_DETECTOR `wx-config --cxxflags` -DwxUSE_UNICODE -DDEBUG -DVERBOSE)
+ADD_DEFINITIONS(-Wall -MD -fPIC -pg -g -DLEAK_DETECTOR `wx-config --cxxflags` -DwxUSE_UNICODE -DDEBUG -DVERBOSE `pkg-config --cflags glib-2.0` `pkg-config --cflags gdk-pixbuf-2.0`)
 
 INCLUDE_DIRECTORIES(AFTER SYSTEM . ${CMAKE_BINARY_DIR} ${CMAKE_SOURCE_DIR} /usr/include/gtk-2.0 /usr/lib/gtk-2.0/include /usr/include/atk-1.0 /usr/include/cairo /usr/include/pango-1.0 /usr/include/glib-2.0 /usr/lib/glib-2.0/include /usr/include/freetype2 /usr/include/libpng12 /usr/include/pixman-1 /usr/include/glib-2.0 /usr/lib/glib-2.0/include)
 CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/config.h.cmake ${CMAKE_BINARY_DIR}/config.h)

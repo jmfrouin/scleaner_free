@@ -1,7 +1,7 @@
 /**
  * This file is part of scleaner project.
 
- * Copyright (C) 2007, 2008 FROUIN Jean-Michel
+ * Copyright (C) 2007, 2008, 2018 FROUIN Jean-Michel
 
  * Visit scleaner website : http://www.scleaner.org
  * This program is free software; you can redistribute it and/or modify
@@ -35,8 +35,8 @@ std::size_t CMemoryManager::TBlock::Total = 0;
 CMemoryManager::CMemoryManager()
 {
   fFile.open(LEAKFILE);
-  if (!fFile)
-    std::cout << i8n("[ERR] : Cannot open ") << fFile << '\n';
+  //if (!fFile)
+  //  std::cout << i8n("[ERR] : Cannot open ") << fFile << '\n';
   //    throw CLoadingFailed("Memory leaks.log", "Impossible d'accder en criture");
   fFile << " MemoryManager v" << VERSION_MEMORY_MANAGER << i8n(" - Report (Compiled on ") << __DATE__ << " @ " << __TIME__ << ")" << '\n';
 }
